@@ -1,0 +1,3 @@
+repository "Schrokitty 2026-01-29_23-48-13/Schrokitty@11270424605111@cloud"
+  path "/"
+    smartbranch "/main/AfterSubmission"
