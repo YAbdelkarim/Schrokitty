@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,8 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 _moveVector;
     private bool _jumpRequested = false;
 
+    public static event Action OnAnyPlayerDie;
+        
     private PlayerAnimator playerAnimator;
 
     private bool _isDead = false;
@@ -109,7 +112,6 @@ public class CharacterController2D : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.gameObject.CompareTag("Spike"))
         {
             gameOverUI.ShowGameOver();
@@ -140,9 +142,25 @@ public class CharacterController2D : MonoBehaviour
         _jumpRequested = true;
     }
 
+    private void OnEnable()
+    {
+        OnAnyPlayerDie += HandleDeath;
+    }
+    private void OnDisable()
+    {
+        OnAnyPlayerDie -= HandleDeath;
+    }
     public void Die()
+    {
+        if (_isDead) return;
+        OnAnyPlayerDie?.Invoke();
+    }
+
+    private void HandleDeath()
     {
         _moveVector = Vector2.zero;
         _isDead = true;
+        Debug.Log(gameObject.name + " is dead");
+        // GetComponent<Animator>().SetTrigger("Death");
     }
 }
