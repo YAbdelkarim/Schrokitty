@@ -6,6 +6,7 @@ public class SceneChanger : MonoBehaviour
     public GameObject _controlsPanel;
     public void MoveToScene(string sceneName)
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
     public void Quit()
