@@ -12,6 +12,11 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float _checkRadius = 0.2f;
     [SerializeField] private LayerMask _groundLayer;
 
+    // variables for wall detection
+    [SerializeField] private Transform _wallCheckRight, _wallCheckLeft;
+    [SerializeField] private float _wallCheckRadius = 0.2f;
+    [SerializeField] private LayerMask _wallLayer;
+
     private Rigidbody2D _rigidbody;
     private Vector2 _moveVector;
     private bool _jumpRequested = false;
@@ -89,11 +94,13 @@ public class CharacterController2D : MonoBehaviour
     {
         _rigidbody.linearVelocityX = _moveVector.x * _movementSpeed;
 
+        // Landing logic
         if(IsGrounded() && _rigidbody.linearVelocityY <= 0)
         {
             playerAnimator.handleLanding();
         }
 
+        // Jump logic
         if(_jumpRequested && IsGrounded())
         {
             _rigidbody.linearVelocityY = _jumpForce;
@@ -109,6 +116,12 @@ public class CharacterController2D : MonoBehaviour
         {
             playerAnimator.handleFall();
         }
+
+        //wall logic
+        if (!IsGrounded() && IsWalled())
+        {
+            //hold wall then fall off after x seconds.
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -122,6 +135,13 @@ public class CharacterController2D : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _groundLayer);
+    }
+
+    private bool IsWalled()
+    {
+        bool wallRight = Physics2D.OverlapCircle(_wallCheckRight.position, _wallCheckRadius, _wallLayer);
+        bool wallLeft = Physics2D.OverlapCircle(_wallCheckLeft.position, _wallCheckRadius, _wallLayer);
+        return wallRight || wallLeft;
     }
 
     public void Move(Vector2 moveVector)
