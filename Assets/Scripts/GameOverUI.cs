@@ -9,8 +9,6 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float fadeDuration = 1.5f;
 
-    private bool canRestart = false;
-
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
