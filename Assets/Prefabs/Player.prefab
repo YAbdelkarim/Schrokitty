@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4178584747451680442}
   - component: {fileID: 9076537890833397927}
   - component: {fileID: 6087794804545607808}
+  - component: {fileID: 1361176391762832813}
   - component: {fileID: 7850233036992874482}
   - component: {fileID: -6361918102196065462}
   m_Layer: 7
@@ -176,15 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f911f7f11e83fea49a0b0d4136b56cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterController2D
-  _movementSpeed: 5
-  _jumpForce: 5
-  _groundCheck: {fileID: 6100468645520111376}
-  _checkRadius: 0.2
-  _groundLayer:
+  movementSpeed: 5
+  jumpForce: 5
+  groundCheck: {fileID: 0}
+  checkRadius: 0.2
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 64
-  _pauseMenu: {fileID: 0}
-  gameOverUI: {fileID: 0}
+    m_Bits: 0
 --- !u!114 &4178584747451680442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +221,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1220ff50ab9034584b08ddac54cbea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
+--- !u!114 &1361176391762832813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140003668164312484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b785093b2e4291bb78ee5f1fc95f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterDeath
+  isDead: 0
+  gameOverUI: {fileID: 0}
 --- !u!95 &7850233036992874482
 Animator:
   serializedVersion: 7
