@@ -12,10 +12,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float _checkRadius = 0.2f;
     [SerializeField] private LayerMask _groundLayer;
 
-    // variables for wall detection
-    [SerializeField] private Transform _wallCheckRight, _wallCheckLeft;
-    [SerializeField] private float _wallCheckRadius = 0.2f;
-    [SerializeField] private LayerMask _wallLayer;
+    private PlayerWallHandler playerWallHandler;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _moveVector;
@@ -117,12 +114,12 @@ public class CharacterController2D : MonoBehaviour
             playerAnimator.handleFall();
         }
 
-        //wall logic
-        if (!IsGrounded() && IsWalled())
+        if (!IsGrounded)
         {
-            //hold wall then fall off after x seconds.
+            playerWallHandler.HandleWallInteractions();
         }
     }
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Spike"))
@@ -135,13 +132,6 @@ public class CharacterController2D : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _groundLayer);
-    }
-
-    private bool IsWalled()
-    {
-        bool wallRight = Physics2D.OverlapCircle(_wallCheckRight.position, _wallCheckRadius, _wallLayer);
-        bool wallLeft = Physics2D.OverlapCircle(_wallCheckLeft.position, _wallCheckRadius, _wallLayer);
-        return wallRight || wallLeft;
     }
 
     public void Move(Vector2 moveVector)
