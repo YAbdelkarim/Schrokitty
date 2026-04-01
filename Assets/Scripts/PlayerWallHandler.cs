@@ -13,12 +13,21 @@ public class PlayerWallHandler : MonoBehaviour
     private bool _wallOnLeft;
     private bool _isHoldingWall;
 
-    public void HandleWallInteractions()
+    private Rigidbody2D _rb;
+    private float _defaultGravityScale;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        _defaultGravityScale = _rb.gravityScale;
+    }
+
+    public void HandleWallInteractions(Vector2 _moveInput)
     {
         //wall logic
         if (IsWalled())
         {
-            if (isMovingTowardsWall())
+            if (isMovingTowardsWall(_moveInput))
             {
                 //hold wall then fall off after x seconds.
                 if (!_isHoldingWall)
@@ -26,14 +35,14 @@ public class PlayerWallHandler : MonoBehaviour
                     //reset timer and zero out velocity
                     _isHoldingWall = true;
                     _wallHoldTimer = _wallHoldDuration;
-                    _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
                 }
                 
                 if(_wallHoldTimer > 0)
                 {
                     // decrement timer and keep player on hold
-                    _wallHoldTimer -= Time.FixedDeltaTime;
-                    _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+                    _wallHoldTimer -= Time.fixedDeltaTime;
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
                 }
                 else
                 {
@@ -61,7 +70,7 @@ public class PlayerWallHandler : MonoBehaviour
         return _wallOnRight || _wallOnLeft;
     }
 
-    private bool isMovingTowardsWall()
+    private bool isMovingTowardsWall(Vector2 _moveInput)
     {
         return (_wallOnRight && _moveInput.x > 0) || (_wallOnLeft  && _moveInput.x < 0);
     }
@@ -78,7 +87,7 @@ public class PlayerWallHandler : MonoBehaviour
         _rb.gravityScale = _defaultGravityScale;
         
         // Clamp downward velocity to a slow slide rather than a full fall
-        if (_rb.velocity.y < _wallSlideSpeed)
-            _rb.velocity = new Vector2(_rb.velocity.x, _wallSlideSpeed);
+        if (_rb.linearVelocity.y < _wallSlideSpeed)
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _wallSlideSpeed);
     }
 }

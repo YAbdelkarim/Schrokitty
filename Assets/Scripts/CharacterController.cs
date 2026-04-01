@@ -32,6 +32,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         playerAnimator = GetComponent<PlayerAnimator>();
+        playerWallHandler = GetComponent<PlayerWallHandler>();
     }
 
     void Start()
@@ -114,9 +115,9 @@ public class CharacterController2D : MonoBehaviour
             playerAnimator.handleFall();
         }
 
-        if (!IsGrounded)
+        if (!IsGrounded())
         {
-            playerWallHandler.HandleWallInteractions();
+            playerWallHandler.HandleWallInteractions(_moveVector);
         }
     }
     
