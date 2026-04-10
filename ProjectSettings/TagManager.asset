@@ -17,8 +17,7 @@ TagManager:
   - Ground
   - Player
   - Spike
-  - 
-  - 
+  - Wall
   - 
   - 
   - 
@@ -56,3 +55,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  m_MigratedRenderPipelines: []
