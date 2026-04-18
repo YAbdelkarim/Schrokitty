@@ -11,8 +11,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float checkRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
-    private PlayerWallHandler playerWallHandler;
-
     private Rigidbody2D _rigidbody;
     private Vector2 _moveVector;
     private bool _jumpRequested = false;
@@ -24,7 +22,6 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         playerAnimator = GetComponent<PlayerAnimator>();
-        playerWallHandler = GetComponent<PlayerWallHandler>();
     }
 
     void Start()
@@ -35,13 +32,11 @@ public class CharacterController2D : MonoBehaviour
     {
         _rigidbody.linearVelocityX = _moveVector.x * movementSpeed;
 
-        // Landing logic
         if(IsGrounded() && _rigidbody.linearVelocityY <= 0)
         {
             playerAnimator.handleLanding();
         }
 
-        // Jump logic
         if(_jumpRequested && IsGrounded())
         {
             _rigidbody.linearVelocityY = jumpForce;
@@ -56,11 +51,6 @@ public class CharacterController2D : MonoBehaviour
         if(_rigidbody.linearVelocityY < 0)
         {
             playerAnimator.handleFall();
-        }
-
-        if (!IsGrounded())
-        {
-            playerWallHandler.HandleWallInteractions(_moveVector);
         }
     }
     
