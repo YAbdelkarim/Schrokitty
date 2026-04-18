@@ -355,6 +355,11 @@ Transform:
   - {fileID: 1964582935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &381124022 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6100468645520111376, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
+  m_PrefabInstance: {fileID: 1428578380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &554605846
 GameObject:
   m_ObjectHideFlags: 0
@@ -12382,6 +12387,17 @@ Transform:
   - {fileID: 554605847}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &711682621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1361176391762832813, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
+  m_PrefabInstance: {fileID: 1428578380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b785093b2e4291bb78ee5f1fc95f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterDeath
 --- !u!1 &748392001
 GameObject:
   m_ObjectHideFlags: 0
@@ -19112,6 +19128,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1361176391762832813, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 763547333}
     - target: {fileID: 2140003668164312484, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -19165,6 +19185,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 763547333}
     - target: {fileID: 5345119334482856934, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 381124022}
+    - target: {fileID: 5345119334482856934, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
       propertyPath: _wallCheckLeft
       value: 
       objectReference: {fileID: 1428578381}
@@ -19172,6 +19196,10 @@ PrefabInstance:
       propertyPath: _wallCheckRight
       value: 
       objectReference: {fileID: 1428578382}
+    - target: {fileID: 5345119334482856934, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 5503151717734990790, guid: 36baa5450b150fb4aa3db03dffc142bf, type: 3}
       propertyPath: m_Material
       value: 
@@ -29080,6 +29108,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6819291379653191762, guid: 6b68133c5b057c340842b1f9965b0af6, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 4288001217008359756}
+    - target: {fileID: 6819291379653191762, guid: 6b68133c5b057c340842b1f9965b0af6, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 763547333}
+    - target: {fileID: 6819291379653191762, guid: 6b68133c5b057c340842b1f9965b0af6, type: 3}
+      propertyPath: characterDeath
+      value: 
+      objectReference: {fileID: 711682621}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
